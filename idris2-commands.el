@@ -494,7 +494,7 @@ compiler-annotated output. Does not return a line number."
 		   ))
 			   children))
    :preserve-properties '(idris2-tt-tree))
-  )
+  ))
 
 (defun idris2-who-calls-name (name)
   "Show the callers of NAME in a tree."
@@ -949,7 +949,10 @@ means to not ask for confirmation."
   (let* ((fname (buffer-file-name))
          (ibc (concat (file-name-sans-extension fname) ".ibc")))
     (if (not (or (string= (file-name-extension fname) "idr")
-                 (string= (file-name-extension fname) "lidr")))
+                 (string= (file-name-extension fname) "lidr")
+                 (string= (file-name-extension fname) "org")
+                 (string= (file-name-extension fname) "markdown")
+                 (string= (file-name-extension fname) "md")))
         (error "The current file is not an Idris2 file")
       (when (or no-confirmation (y-or-n-p (concat "Really delete " ibc "?")))
         (when (file-exists-p ibc)
