@@ -9,11 +9,17 @@ Install it by running within your `~/.emacs.d` directory:
 $ git clone https://github.com/redfish64/idris2-mode
 ```
 
-Then in your `~/.emacs.d/init.el` file, add:
+Then in your `~/.emacs` or `~/.emacs.d/init.el` file, add:
 ```
-(add-to-list 'load-path "~/.emacs.d/idris2-mode/")
-(require 'idris2-mode)
+;; auto-load idris2-mode for .idr and .idr
+(setq auto-mode-alist
+   (append
+     '(("\\.idr\\'" . idris2-mode)
+       ("\\.lidr\\'" . idris2-mode))
+     auto-mode-alist))
 ```
+
+If you already have settings which change your `auto-mode-alist` in your configuration, put these after the ones you already have or combine them if you are comfortable with Emacs Lisp. The configuration file for Emacs is normally located in `~/.emacs` or `~/.emacs.d/init.el`.
 
 Here is what works so far:
 ```
